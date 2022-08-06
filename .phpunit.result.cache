@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Unit\\TestClassTest::test_max":3},"times":{"Unit\\TestClass::test_example":0.003,"Unit\\TestClassTest::test_example":0.003,"Unit\\TestClassTest::test_max":0.008}}
