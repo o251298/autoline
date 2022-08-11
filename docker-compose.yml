@@ -36,3 +36,17 @@ services:
         volumes:
             - ./storage/db:/var/lib/mysql
             - .docker/mysql/mysql.conf:/etc/mysql/conf.d/custom.conf
+    cron:
+        container_name: autoline-cron
+        build:
+            context: .
+            dockerfile: .docker/cron/Dockerfile
+        volumes:
+            - .:/var/www/html
+            - .docker/cron/log:/var/log/cron
+        restart: always
+    redis:
+        image: redis:alpine
+        container_name: autoline-redis
+        ports:
+            - "6379:6379"

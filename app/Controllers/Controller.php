@@ -2,14 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Services\DataBase\DB;
+use App\Services\Redis\RedisClient;
 class Controller
 {
-    public function view(string $page, array $parametrs) : void
+    public function view(string $page, array $parametrs = []) : void
     {
-        foreach ($parametrs as $key => $value)
+        $redis = new RedisClient();
+        if (!$redis->client->exists('categories'))
         {
-            $$key = $value;
+            $category = (new DB())->adapter->select()->from('categories')->query()->fetchAll();
+            $html = '';
+            foreach ($category as $item)
+            {
+                $html .= <<<HTML
+<a href="/category/$item[id]" class="list-group-item list-group-item-action">$item[name]</a>
+HTML;
+            }
+            $redis->client->set('categories', $html);
         }
-        include_once '../../views/' . $page . '.php';
+        $html = $redis->client->get('categories');
+        if (!empty($parametrs))
+        {
+            foreach ($parametrs as $key => $value)
+            {
+                $$key = $value;
+            }
+        }
+        include_once '.././views/' . $page . '.php';
     }
 }

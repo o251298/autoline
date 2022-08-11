@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Unit\\TestClassTest::test_max":3},"times":{"Unit\\TestClass::test_example":0.003,"Unit\\TestClassTest::test_example":0.003,"Unit\\TestClassTest::test_max":0.008}}
+{"version":1,"defects":{"Unit\\TestClassTest::test_max":3,"Unit\\Router\\RouterTest::test_run":4},"times":{"Unit\\TestClass::test_example":0.003,"Unit\\TestClassTest::test_example":0.003,"Unit\\TestClassTest::test_max":0.008,"Unit\\Codewars\\CodewarsTest::test_anagrams":0.003,"Unit\\Router\\RouterTest::test_run":0.003}}

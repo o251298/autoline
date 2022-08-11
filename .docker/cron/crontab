@@ -1,0 +1,1 @@
+0 0 * * * cd /var/www/backups && tar -zcvf "$curtime.tar.gz" /var/www/html >> /dev/null 2>&1
