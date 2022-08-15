@@ -1,59 +1,53 @@
 <?php
-
 namespace App;
 
-use App\Services\Log\Log;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Exception\NoConfigurationException;
 
 class Router
 {
-    public string $uri;
-    public function getUrl() : Router
+    private RouteCollection $routes;
+    public function __construct(RouteCollection $router)
     {
-        $this->uri = trim($_SERVER["REQUEST_URI"], '/');
-        return $this;
+        $this->routes = $router;
     }
 
-    public function run() : string|bool
+    public function run()
     {
+        $context = new RequestContext();
+        $request = Request::createFromGlobals();
+        $context->fromRequest(Request::createFromGlobals());
 
-        $router = require '../routes/web.php';
-        $newPath = null;
-        $errors = [];
-        foreach ($router as $urlPattern => $action)
-        {
-            if (preg_match("~$urlPattern~", $this->uri))
+        // Routing can match routes with incoming requests
+        $matcher = new UrlMatcher($this->routes, $context);
+        try {
+            $matcher = $matcher->match($_SERVER['REQUEST_URI']);
+            // Cast params to int if numeric
+            array_walk($matcher, function(&$param)
             {
-                $newPath = preg_replace("~$urlPattern~", $action, $this->uri);
-                $segments = explode('/', $newPath);
-                $class = array_shift($segments);
-                $method = array_shift($segments);
-                $param = $segments;
-                $className = "\\App\\Controllers\\" . ucfirst($class) . 'Controller';
-                $methodName = $method;
-                if (class_exists($className)){
-                    $classObj = new $className;
-                    if (method_exists($classObj, $methodName)){
-                        call_user_func(array($classObj, $methodName), $param);
-                        return true;
-                    } else {
-                        $errors[] = 'method not exist';
-                    }
-                } else {
-                    $errors[] = 'class not exist';
+                if(is_numeric($param))
+                {
+                    $param = (int) $param;
                 }
-            }
+            });
+            // https://github.com/gmaccario/simple-mvc-php-framework/issues/2
+            // Issue #2: Fix Non-static method ... should not be called statically
+            $className = '\\App\\Controllers\\' . $matcher['controller'];
+            $classInstance = new $className();
+            // Add routes as paramaters to the next class
+            $params = array_merge(array_slice($matcher, 2, -1), array('routes' => $this->routes));
+            call_user_func_array(array($classInstance, $matcher['method']), $params);
+        } catch (MethodNotAllowedException $e) {
+            echo 'Route method is not allowed.';
+        } catch (ResourceNotFoundException $e) {
+            echo 'Route does not exists.';
+        } catch (NoConfigurationException $e) {
+            echo 'Configuration does not exists.';
         }
-        if (!empty($errors))
-        {
-            Log::channel('router')->error("error", $errors);
-            require_once '.././views/errors/404.php';
-            return false;
-        }
-        if ($newPath === null)
-        {
-            Log::channel('router')->error('error');
-            return false;
-        }
-        return false;
     }
 }

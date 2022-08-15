@@ -1,9 +1,9 @@
 <?php
-return array(
-    'category/([0-9]+)' => 'main/category/$1',
-    //    'test/message/([0-9]+)' => 'page/message/$1',
-//    'login/store'       => 'home/login_store',
-//    'login/unset'       => 'home/login_unset',
-//    'login'             => 'home/login',
-    ''                  => 'main/index',
-);
+
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
+
+// Routes system
+$routes = new RouteCollection();
+$routes->add('main', new Route('/', array('controller' => 'MainController', 'method'=>'index')));
+$routes->add('product', new Route('/category/{id}', array('controller' => 'MainController', 'method'=>'category'), array('id' => '[0-9]+')));
