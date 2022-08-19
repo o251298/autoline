@@ -20,6 +20,23 @@
             </DockerContainerSettings>
           </value>
         </entry>
+        <entry key="88098f60-5359-46d7-9bbf-89bc6881dd88">
+          <value>
+            <DockerContainerSettings>
+              <option name="networkMode" value="autoline_xdebuger_default" />
+              <option name="runCliOptions" value="" />
+              <option name="version" value="1" />
+              <option name="volumeBindings">
+                <list>
+                  <DockerVolumeBindingImpl>
+                    <option name="containerPath" value="/app" />
+                    <option name="hostPath" value="$PROJECT_DIR$" />
+                  </DockerVolumeBindingImpl>
+                </list>
+              </option>
+            </DockerContainerSettings>
+          </value>
+        </entry>
       </map>
     </list>
   </component>

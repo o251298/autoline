@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Transport;
 use App\Services\DataBase\DB;
 use App\Services\Redis\RedisClient;
 use Symfony\Component\Routing\RouteCollection;
@@ -34,5 +35,11 @@ class MainController extends Controller
         $stmt = $select->query();
         $result = $stmt->fetchAll();
         return $this->view('index', ['result' => $result]);
+    }
+
+    public function transport(int $id, RouteCollection $routes)
+    {
+        $transport = Transport::find($id);
+        return $this->view('transport', ['transport' => $transport]);
     }
 }
