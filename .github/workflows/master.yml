@@ -17,4 +17,4 @@ jobs:
           username: root
           password: sX1iO9tL4yeU
           server-dir: /autoline/
-          port: 21 # todo replace with your web hosts ftps port
+          port: 22 # todo replace with your web hosts ftps port
