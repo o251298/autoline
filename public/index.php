@@ -1,4 +1,6 @@
 <?php
+echo 12;
+die();
 require_once './../vendor/autoload.php';
 require_once '../routes/web.php';
 use Dotenv\Dotenv;
