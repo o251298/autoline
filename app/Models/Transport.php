@@ -13,6 +13,7 @@ class Transport extends BasicModel
     private string $description;
     private int $speed;
     private float $amount;
+    private string $color;
 
 
 
@@ -43,7 +44,10 @@ class Transport extends BasicModel
     {
         return $this->name;
     }
-
+    public function getColor(): string
+    {
+        return $this->color;
+    }
     /**
      * @return string
      */

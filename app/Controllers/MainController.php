@@ -42,4 +42,24 @@ class MainController extends Controller
         $transport = Transport::find($id);
         return $this->view('transport', ['transport' => $transport]);
     }
+
+    public function filter(RouteCollection $routes)
+    {
+        $adapter = new DB();
+        $speed = $_GET['speed'];
+        $amount = $_GET['amount'];
+        $colors = $_GET['colors'] ?? null;
+        $smt = $adapter->adapter->select()
+            ->from("transports")
+            ->where("speed < $speed")
+            ->where("amount < $amount");
+        if (isset($colors)){
+            $colors = implode('\', \'', $_GET['colors']);
+            $fin = "'" . $colors . "'";
+            $smt->where('color IN ('.$fin.')');
+        }
+        $select = $smt->query();
+        $result = $select->fetchAll();
+        return $this->view('index', ['result' => $result]);
+    }
 }

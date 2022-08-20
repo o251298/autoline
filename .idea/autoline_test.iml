@@ -83,6 +83,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/datasource" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/database" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tebazil/db-seeder" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

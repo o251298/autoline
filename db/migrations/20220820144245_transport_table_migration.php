@@ -24,6 +24,7 @@ final class TransportTableMigration extends AbstractMigration
             ->addColumn('description', 'text')
             ->addColumn('speed', 'integer')
             ->addColumn('amount', 'float')
+            ->addColumn('color', 'string')
             ->addTimestamps()
             ->addIndex(['name'], ['unique' => false]);
         $table->create();

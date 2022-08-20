@@ -22,6 +22,29 @@ HTML;
             $redis->client->set('categories', $html);
         }
         $html = $redis->client->get('categories');
+
+
+
+
+
+
+
+
+        $filters = null;
+        if (!$redis->client->exists('filter'))
+        {
+            $filter = '';
+            foreach ($category as $item)
+            {
+                $html .= <<<HTML
+<a href="/category/$item[id]" class="list-group-item list-group-item-action">$item[name]</a>
+HTML;
+            }
+            $redis->client->set('filter', $html);
+        }
+
+
+
         if (!empty($parametrs))
         {
             foreach ($parametrs as $key => $value)

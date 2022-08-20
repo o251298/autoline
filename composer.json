@@ -22,6 +22,8 @@
         "predis/predis": "v1.1.x-dev",
         "symfony/routing": "^6.1",
         "symfony/http-foundation": "^6.1",
-        "robmorgan/phinx": "^0.12.10"
+        "robmorgan/phinx": "^0.12.10",
+        "tebazil/db-seeder": "^1.0",
+        "fzaninotto/faker" : "^1.5.0"
     }
 }

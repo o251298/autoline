@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="/transport/<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a>
+                        <i style="float: right"><?php echo $item['color']; ?></i>
                     </h5>
                     <p class="card-text"><?php echo $item['description']; ?></p>
                 </div>

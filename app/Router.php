@@ -25,8 +25,10 @@ class Router
 
         // Routing can match routes with incoming requests
         $matcher = new UrlMatcher($this->routes, $context);
+        $uri = $_SERVER['REQUEST_URI'];
+        if (preg_match("/\\?+/", $_SERVER['REQUEST_URI'])) $uri = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '?'));
         try {
-            $matcher = $matcher->match($_SERVER['REQUEST_URI']);
+            $matcher = $matcher->match($uri);
             // Cast params to int if numeric
             array_walk($matcher, function(&$param)
             {
@@ -35,6 +37,7 @@ class Router
                     $param = (int) $param;
                 }
             });
+
             // https://github.com/gmaccario/simple-mvc-php-framework/issues/2
             // Issue #2: Fix Non-static method ... should not be called statically
             $className = '\\App\\Controllers\\' . $matcher['controller'];

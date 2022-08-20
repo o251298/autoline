@@ -5,6 +5,7 @@ use Symfony\Component\Routing\RouteCollection;
 use App\Controllers\MainController;
 // Routes system
 $routes = new RouteCollection();
+$routes->add('filter', new Route('/filter', ['controller' => 'MainController', 'method'=> 'filter']));
 $routes->add('main', new Route('/', array('controller' => 'MainController', 'method'=>'index')));
 $routes->add('category', new Route('/category/{id}', array('controller' => 'MainController', 'method'=>'category'), array('id' => '[0-9]+')));
 $routes->add('transport', new Route('/transport/{id}', ['controller' => 'MainController', 'method'=> 'transport'], array('id' => '[0-9]+')));

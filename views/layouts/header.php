@@ -28,4 +28,43 @@
             <div class="list-group">
                <?php echo $html;?>
             </div>
+            <h2>Filter</h2>
+            <ul class="list-group">
+                <form action="/filter" method="get">
+                    <li class="list-group-item">
+                        <strong>Color</strong><br>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="red" id="firstCheckbox" name="colors[]">
+                                <label class="form-check-label" for="firstCheckbox">Red</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="purple" id="firstCheckbox" name="colors[]">
+                                <label class="form-check-label" for="firstCheckbox">Purple</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="silver" id="firstCheckbox" name="colors[]">
+                                <label class="form-check-label" for="firstCheckbox">Silver</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="teal" id="firstCheckbox" name="colors[]">
+                                <label class="form-check-label" for="firstCheckbox">Teal</label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Speed </strong><br>
+                        <label for="speed" class="form-label">(min 200 - max 400)</label>
+                        <input type="range" class="form-range" min="200" max="400" step="50" id="speed" name="speed">
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Amount</strong><br>
+                        <label for="amount" class="form-label">(min 1 - max 10000)</label>
+                        <input type="range" class="form-range" min="1" max="10000" step="500" id="amount" name="amount">
+                    </li>
+                    <li class="list-group-item">
+                        <button type="submit" class="btn btn-success">Light</button>
+                    </li>
+                </form>
+            </ul>
         </div>
