@@ -21,6 +21,7 @@
         "zf1/zend-db": "^1.12",
         "predis/predis": "v1.1.x-dev",
         "symfony/routing": "^6.1",
-        "symfony/http-foundation": "^6.1"
+        "symfony/http-foundation": "^6.1",
+        "robmorgan/phinx": "^0.12.10"
     }
 }

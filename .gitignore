@@ -2,3 +2,5 @@
 /tests
 /storage
 /migrations
+/.docker
+phinx.json
