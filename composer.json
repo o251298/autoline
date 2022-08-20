@@ -1,0 +1,26 @@
+{
+    "name": "oleg/autoline_test",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "o251298",
+            "email": "o251298@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "doctrine/orm": "^2.12",
+        "vlucas/phpdotenv": "^5.4",
+        "symfony/cache": "^6.1",
+        "doctrine/migrations": "^3.5",
+        "monolog/monolog": "^3.2",
+        "zf1/zend-db": "^1.12",
+        "predis/predis": "v1.1.x-dev",
+        "symfony/routing": "^6.1",
+        "symfony/http-foundation": "^6.1"
+    }
+}

@@ -1,4 +1,5 @@
 /vendor/
+/tests/
 /storage/
 .env
-composer.json
+/.docker/
