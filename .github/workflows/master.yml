@@ -1,20 +1,17 @@
-name: Deploy autoline
 on:
   push:
-    branches: [master]
-jobs:
+    branches:
+      - main
 
-  build:
-    name: Build
+jobs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: 185.65.246.209
-        username: root
-        key: ${{ secrets.AUTO_SECRET }}
-        port: 22
-        script: |
-          cd autoline
-          git pull origin master
+      - uses: actions/checkout@v2
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.AUTO_SECRET }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
+      # Deploy
+      - run: cd app && rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . 185.65.246.209:/docker-project
