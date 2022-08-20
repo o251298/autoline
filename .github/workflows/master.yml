@@ -1,17 +1,21 @@
+name: SSH Deploy
+
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      # Setup key
-      - run: set -eu
-      - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.AUTO_SECRET }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-      # Deploy
-      - run: cd app && rsync -e "ssh -p 22 -i $HOME/.ssh/authorized_keys -o StrictHostKeyChecking=no" --archive --compress --delete . 185.65.246.209:/root/docker-project
+   	  - uses: actions/checkout@v2
+      - name: ssh deploy
+        uses: easingthemes/ssh-deploy@v2.1.4
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.AUTO_SECRET }}
+          REMOTE_HOST: 185.65.246.209
+          REMOTE_USER: root
+          REMOTE_PORT: 22
+          SOURCE: "/"
+          TARGET: /docker-project/
