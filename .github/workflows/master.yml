@@ -13,7 +13,7 @@ jobs:
       with:
         host: 185.65.246.209
         username: root
-        key: ${{ secrets.PASSWORD }}
+        key: ${{ secrets.AUTO_SECRET }}
         port: 22
         script: |
           cd autoline
