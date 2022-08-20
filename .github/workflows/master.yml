@@ -13,6 +13,8 @@ jobs:
       with:
         host: 185.65.246.209
         username: root
-        key: ${{ secrets.AUTO_SECRET }}
+        key: ${{ secrets.PASSWORD }}
         port: 22
-        script: whoami
+        script: |
+          cd autoline
+          git pull origin master
