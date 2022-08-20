@@ -1,5 +1,3 @@
-
-
 on: push
 name: 🚀 Deploy website on push
 jobs:
@@ -13,8 +11,8 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.2.0
         with:
-          server: 45.83.122.57
+          server: 185.65.246.209
           username: root
-          password: sX1iO9tL4yeU
-          server-dir: /autoline/
+          password: L8tnh2xXWMNr
+          server-dir: /docker-project/
           port: 22 # todo replace with your web hosts ftps port
