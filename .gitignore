@@ -1,5 +1,5 @@
-/vendor/
-/tests/
-/storage/
+/vendor
+/tests
+/storage
 .env
-/.docker/
+/.github
