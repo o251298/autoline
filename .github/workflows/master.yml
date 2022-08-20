@@ -14,4 +14,4 @@ jobs:
       - run: echo "${{ secrets.AUTO_SECRET }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
       # Deploy
-      - run: cd app && rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . 185.65.246.209:/root/docker-project
+      - run: cd app && rsync -e "ssh -p 22 -i $HOME/.ssh/authorized_keys -o StrictHostKeyChecking=no" --archive --compress --delete . 185.65.246.209:/root/docker-project
