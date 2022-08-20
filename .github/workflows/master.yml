@@ -1,18 +1,18 @@
-on: push
-name: 🚀 Deploy website on push
+name: Deploy autoline
+on:
+  push:
+    branches: [master]
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v2
-
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
-        with:
-          server: 185.65.246.209
-          username: root
-          password: L8tnh2xXWMNr
-          server-dir: /docker-project/
-          port: 22 # todo replace with your web hosts ftps port
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: 185.65.246.209
+        username: root
+        key: ${{ secrets.AUTO_SECRET }}
+        port: 22
+        script: whoami
