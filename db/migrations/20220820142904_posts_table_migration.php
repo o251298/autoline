@@ -18,6 +18,14 @@ final class PostsTableMigration extends AbstractMigration
      */
     public function change(): void
     {
+    $table = $this->table('comments');
 
+    $table->addColumn('title', 'string', ['limit' => 20])
+        ->addColumn('body', 'text')
+        ->addColumn('cover_image', 'string')
+        ->addTimestamps()
+        ->addIndex(['title'], ['unique' => true]);
+
+     $table->create();
     }
 }
