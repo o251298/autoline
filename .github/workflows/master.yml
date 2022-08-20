@@ -2,7 +2,7 @@ name: SSH Deploy
 
 on:
   push:
-    branches: [ masters ]
+    branches: [ master ]
 
 jobs:
   deploy:
