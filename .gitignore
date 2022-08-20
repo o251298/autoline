@@ -1,5 +1,5 @@
 /vendor
 /tests
 /storage
-.env
 /.github
+/migrations
